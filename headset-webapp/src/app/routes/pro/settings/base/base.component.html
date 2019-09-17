@@ -1,0 +1,57 @@
+<div class="main"
+     *ngIf="user">
+    <div class="left">
+        <form nz-form
+              nzLayout="vertical"
+              #f="ngForm"
+              (submit)="save()"
+              se-container="1">
+            <se label="邮箱"
+                error="请输入您的邮箱!">
+                <input nz-input
+                       type="email"
+                       [(ngModel)]="user.email"
+                       name="email"
+                       required/>
+            </se>
+            <se label="昵称"
+                error="请输入您的昵称!">
+                <input nz-input
+                       [(ngModel)]="user.userName"
+                       name="name"
+                       required/>
+            </se>
+            <se label="手机号">
+                <input nz-input
+                       [(ngModel)]="user.phone"
+                       name="phone"
+                       placeholder="输入手机号">
+            </se>
+
+            <se label="生日">
+                <nz-date-picker
+                        name="birthday"
+                        [(ngModel)]="user.birthday"
+                        [nzPlaceHolder]="'选择生日'"
+                        [nzMode]="'day'"></nz-date-picker>
+            </se>
+            <se>
+                <button nz-button nzType="primary" [disabled]="f.invalid">更新基本信息</button>
+            </se>
+        </form>
+    </div>
+    <div class="right">
+        <div class="avatar_title">Avatar</div>
+        <div class="avatar"><img src="{{ user.imageUrl }}"
+                                 alt="Avatar"/></div>
+        <nz-upload nzAction="/user/avatar"
+                   [nzShowUploadList]="false">
+            <button nz-button
+                    class="button_view">
+                <i nz-icon
+                   nzType="upload"></i>
+                <span>更换头像</span>
+            </button>
+        </nz-upload>
+    </div>
+</div>

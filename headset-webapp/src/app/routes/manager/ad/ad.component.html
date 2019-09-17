@@ -1,0 +1,54 @@
+<page-header>
+
+</page-header>
+<nz-card [nzTitle]="phActionTpl" [nzExtra]="search">
+    <ng-template #phActionTpl>
+        <nz-button-group>
+            <button (click)="add()"
+                    nz-button
+                    nzType="primary"><i nz-icon
+                                        type="plus"></i> 添加
+            </button>
+            <button nz-button
+                    (click)="export()">
+                <i nz-icon
+                   nzType="download"></i>导出
+            </button>
+        </nz-button-group>
+        <nz-dropdown *ngIf="selectedRows.length > 0"
+                     class="mx-sm">
+            <button nz-button
+                    nz-dropdown>批量操作<i nz-icon
+                                       nzType="ellipsis"></i></button>
+            <ul nz-menu>
+                <li nz-menu-item
+                    (click)="deleteMany(selectedRows)"><i nz-icon
+                                                          nzType="delete"></i>删除
+                </li>
+                <li nz-menu-item><i nz-icon
+                                    nzType="delete"></i>禁用
+                </li>
+                <li nz-menu-item><i nz-icon
+                                    nzType="delete"></i>启用
+                </li>
+            </ul>
+        </nz-dropdown>
+    </ng-template>
+
+    <ng-template #search>
+        <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
+    </ng-template>
+    <ng-template #alert>
+        <nz-alert [nzType]="'info'"
+                  [nzShowIcon]="true"
+                  [nzMessage]="message">
+            <ng-template #message>已选择
+                <strong class="text-primary">{{ selectedRows.length }}项</strong>
+                <a *ngIf="selectedRows.length > 0"
+                   (click)="st.clearCheck()"
+                   class="ml-lg">清空</a>
+            </ng-template>
+        </nz-alert>
+    </ng-template>
+    <st bordered #st [data]="url" [columns]="columns" [header]="alert"></st>
+</nz-card>

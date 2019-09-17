@@ -1,0 +1,7 @@
+<page-header>
+
+</page-header>
+<nz-card>
+    <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
+    <st #st bordered [data]="url" [columns]="columns" [req]="{params:{sort:'id,desc'}}"></st>
+</nz-card>

@@ -1,0 +1,27 @@
+<page-header [content]="content">
+    <ng-template #content>
+        <nz-row [nzGutter]="24">
+            <nz-col [nzSpan]="4">
+                <nz-statistic [nzValue]="97238.2 | number: '1.0-2'" [nzTitle]="'已提金额 (CNY)'"></nz-statistic>
+            </nz-col>
+            <nz-col [nzSpan]="4">
+                <nz-statistic [nzValue]="121010.88 | number: '1.0-2'" [nzTitle]="'未提金额 (CNY)'"></nz-statistic>
+            </nz-col>
+        </nz-row>
+    </ng-template>
+</page-header>
+<nz-card [nzTitle]="phActionTpl" [nzExtra]="search">
+    <ng-template #phActionTpl>
+        <nz-button-group>
+            <button nz-button
+                    (click)="export()">
+                <i nz-icon
+                   nzType="download"></i>导出
+            </button>
+        </nz-button-group>
+    </ng-template>
+    <ng-template #search>
+        <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
+    </ng-template>
+    <st #st bordered [data]="url" [columns]="columns" [req]="{params:{isCashOut:true}}"></st>
+</nz-card>

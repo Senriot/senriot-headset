@@ -1,0 +1,78 @@
+<page-header></page-header>
+<nz-card [nzTitle]="phActionTpl">
+
+    <ng-template #phActionTpl>
+
+        <nz-button-group>
+            <button (click)="add()"
+                    acl acl-ability="user-add"
+                    nz-button
+                    nzType="primary"><i nz-icon
+                                        type="plus"></i> 添加用户
+            </button>
+            <button nz-button acl acl-ability="user-export"
+                    (click)="export()">
+                <i nz-icon
+                   nzType="download"></i>导出
+            </button>
+        </nz-button-group>
+        <nz-dropdown *ngIf="selectedRows.length > 0"
+                     class="mx-sm">
+            <button nz-button
+                    nz-dropdown>批量操作<i nz-icon
+                                       nzType="ellipsis"></i></button>
+            <ul nz-menu>
+                <li nz-menu-item
+                    acl acl-ability="user-del"
+                    (click)="deleteMany(selectedRows)"><i nz-icon
+                                                          nzType="delete"></i>删除
+                </li>
+                <li nz-menu-item acl acl-ability="user-disable"><i nz-icon
+                                                                   nzType="delete"></i>禁用
+                </li>
+                <li nz-menu-item acl acl-ability="user-enable"><i nz-icon
+                                                                  nzType="delete"></i>启用
+                </li>
+            </ul>
+        </nz-dropdown>
+    </ng-template>
+
+<!--    <ng-template #search>-->
+<!--        <sf #sf-->
+<!--            mode="search"-->
+<!--            [schema]="searchSchema"-->
+<!--            (formSubmit)="st.reset($event)"-->
+<!--            (formReset)="st.reset($event)"></sf>-->
+<!--    </ng-template>-->
+    <sf #sf
+        mode="search"
+        [schema]="searchSchema"
+        (formSubmit)="st.reset($event)"
+        (formReset)="st.reset($event)"></sf>
+    <st #st
+        [header]="alert"
+        [data]="url"
+        [bordered]="true"
+        (change)="onChanged($event)"
+        [columns]="columns">
+        <ng-template #avatar
+                     st-row="custom"
+                     let-item
+                     let-index="index"
+                     let-column="column">
+            <nz-avatar [nzShape]="'square'"
+                       [nzIcon]="'user'"></nz-avatar>
+        </ng-template>
+        <ng-template #alert>
+            <nz-alert [nzType]="'info'"
+                      [nzShowIcon]="true"
+                      [nzMessage]="message">
+                <ng-template #message>已选择 <strong class="text-primary">{{ selectedRows.length }}项</strong>
+                    <a *ngIf="selectedRows.length > 0"
+                       (click)="st.clearCheck()"
+                       class="ml-lg">清空</a>
+                </ng-template>
+            </nz-alert>
+        </ng-template>
+    </st>
+</nz-card>

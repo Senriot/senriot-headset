@@ -1,0 +1,58 @@
+<div class="modal-header">
+    <div class="modal-title">{{title}}</div>
+</div>
+<form nz-form
+      #f="ngForm"
+      se-container="1"
+      labelWidth="100">
+    <se label="角色标识"
+        required
+        error="请输入角色标识">
+        <input nz-input
+               [(ngModel)]="record.name"
+               placeholder="输入角色标识"
+               [required]="true"
+               [disabled]="isEdit"
+               name="name">
+    </se>
+
+    <se label="角色名称"
+        required
+        error="输入角色名称">
+        <input nz-input
+               [(ngModel)]="record.roleName"
+               name="roleName"
+               [required]="true"
+               placeholder="输入角色名称">
+    </se>
+
+    <se label="排序">
+        <nz-input-number [(ngModel)]="record.sortOrder"
+                         name="sortOrder"></nz-input-number>
+    </se>
+
+    <se label="描述">
+      <textarea name="description"
+                nz-input
+                rows="2"
+                [(ngModel)]="record.description"
+                placeholder="..."
+      ></textarea>
+    </se>
+
+    <se col="1">
+        <div class="modal-footer">
+            <button nz-button
+                    type="button"
+                    (click)="close()"> 关闭
+            </button>
+            <button nz-button
+                    type="submit"
+                    [nzType]="'primary'"
+                    (click)="save(f.value)"
+                    [disabled]="!f.valid"
+                    [nzLoading]="loading$ | async">保存
+            </button>
+        </div>
+    </se>
+</form>

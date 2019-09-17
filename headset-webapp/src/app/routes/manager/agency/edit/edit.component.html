@@ -1,0 +1,84 @@
+<div class="modal-header">
+    <div class="modal-title">{{record.id ? '编辑' : '添加代理'}}</div>
+</div>
+<nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
+
+<form nz-form
+      #f="ngForm"
+      gutter="24"
+      *ngIf="i"
+      se-container="2"
+      [labelWidth]="100">
+
+    <se label="代理类型" required error="选择代理类型">
+        <nz-input-group nzCompact>
+            <nz-select [(ngModel)]="i.agencyType" name="agencyType" required style="width: 30%;" nzPlaceHolder="选择代理类型"
+                       (ngModelChange)="city.clearSelection();agencyTypeChanged($event)">
+                <nz-option [nzLabel]="'省代'" [nzValue]="'PROVINCE'"></nz-option>
+                <nz-option [nzLabel]="'市代'" [nzValue]="'CITY'"></nz-option>
+            </nz-select>
+            <nz-cascader #city [nzOptions]="cities" [(ngModel)]="selectedCities"
+                         name="cities"
+                         (nzSelectionChange)="cityChanged($event)" style="width: 70%;"
+                         nzPlaceHolder="选择代理地区"
+                         [nzLabelProperty]="'title'"
+                         [nzValueProperty]="'key'"></nz-cascader>
+        </nz-input-group>
+    </se>
+
+    <se label="代理名称" required error="输入代理名称">
+        <input nz-input name="name" [(ngModel)]="i.name" required placeholder="输入代理名称">
+    </se>
+
+    <!--    <se label="账号" required error="输入代理登录账号">-->
+    <!--        &lt;!&ndash;        <input nz-input name="name" [(ngModel)]="i.account" required placeholder="输入代理名称">&ndash;&gt;-->
+    <!--&lt;!&ndash;        <nz-select [(ngModel)]="" [nzPlaceHolder]="''" [nzAllowClear]="true">&ndash;&gt;-->
+    <!--&lt;!&ndash;            <nz-option&ndash;&gt;-->
+    <!--&lt;!&ndash;                    *ngFor="let option of options"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    [nzLabel]="option.label"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    [nzValue]="option"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    [nzDisabled]="option.disabled">&ndash;&gt;-->
+    <!--&lt;!&ndash;            </nz-option>&ndash;&gt;-->
+    <!--&lt;!&ndash;        </nz-select>&ndash;&gt;-->
+    <!--    </se>-->
+
+    <se label="联系人">
+        <input nz-input name="contact" [(ngModel)]="i.contact" placeholder="输入联系人">
+    </se>
+    <se label="电话">
+        <input nz-input name="phone" [(ngModel)]="i.phone" placeholder="输入电话">
+    </se>
+    <se label="联系地址" col="1">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" nz-input [(ngModel)]="i.address.address" name="address" placeholder="选择联系地址"/>
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+            <button nz-button (click)="showMap()" nzType="primary" nzSearch><i nz-icon nzType="environment"></i>
+            </button>
+        </ng-template>
+    </se>
+
+    <se col="1">
+        <div class="modal-footer">
+            <button nz-button
+                    type="button"
+                    (click)="close()">关闭
+            </button>
+            <button nz-button
+                    type="submit"
+                    [nzType]="'primary'"
+                    (click)="save(f.value)"
+                    [disabled]="!f.valid">保存
+            </button>
+        </div>
+    </se>
+</form>
+
+<!--<sf *ngIf="i" #sf mode="edit" [schema]="schema" [ui]="ui" [formData]="i" button="none">-->
+<!--    <div class="modal-footer">-->
+<!--        <button nz-button type="button" (click)="close()">关闭</button>-->
+<!--        <button nz-button type="submit" nzType="primary" (click)="save(sf.value)" [disabled]="!sf.valid"-->
+<!--                [nzLoading]="http.loading">保存-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</sf>-->

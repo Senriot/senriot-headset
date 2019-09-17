@@ -1,0 +1,22 @@
+<nz-card [nzTitle]="title">
+    <ng-template #title>
+        <button (click)="add()"
+                nz-button
+                nzType="primary"><i nz-icon
+                                    type="plus"></i> 添加
+        </button>
+    </ng-template>
+    <ng-template #extra>
+        More
+    </ng-template>
+    <ng-template #body>
+
+    </ng-template>
+
+    <st #logSt
+        [bordered]="true"
+        [columns]="columns"
+        [page]="page"
+        [ps]="0"
+        [data]="url"></st>
+</nz-card>

@@ -1,0 +1,32 @@
+<page-header *ngIf="device$ | async as device"
+             [breadcrumb]="breadcrumb"
+             [tab]="tab"
+             [title]="device.deviceName">
+    <ng-template #breadcrumb>
+        <nz-breadcrumb>
+            <nz-breadcrumb-item><a [routerLink]="'/deviceManager/devices'">设备管理</a></nz-breadcrumb-item>
+            <nz-breadcrumb-item><a>设备详情</a></nz-breadcrumb-item>
+        </nz-breadcrumb>
+    </ng-template>
+    <!--    <ng-template #menu>-->
+    <!--        <ul nz-menu nzMode="horizontal">-->
+    <!--            <li (click)="to(m)" *ngFor="let m of menus" [nzSelected]="m.selected" nz-menu-item>{{ m.title }}</li>-->
+    <!--        </ul>-->
+    <!--    </ng-template>-->
+
+    <ng-template #tab>
+        <nz-tabset [nzSize]="'default'">
+            <nz-tab nzTitle="设备信息" tabindex="0">
+                <app-device-view-info [device]="device"></app-device-view-info>
+            </nz-tab>
+            <nz-tab *ngIf="device.status === 'ONLINE'" nzTitle="通道管理">
+                <app-device-view-bonus [deviceId]="device.id"></app-device-view-bonus>
+            </nz-tab>
+            <nz-tab nzTitle="事件日志">
+                <app-device-view-log [deviceId]="device.id"></app-device-view-log>
+            </nz-tab>
+        </nz-tabset>
+    </ng-template>
+</page-header>
+
+<ng-template appViewHost></ng-template>

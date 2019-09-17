@@ -1,0 +1,29 @@
+//rootProject.name = 'senriot-cloud'
+
+//include("senriot-cloud-system")
+//
+//findProject(":senriot-cloud-system")?.name = "system"
+//include 'senriot-cloud-common'
+//findProject(':senriot-cloud-common')?.name = 'common'
+//
+//include 'senriot-cloud-aliyun'
+//findProject(':senriot-cloud-aliyun')?.name = 'aliyun-sdk'
+
+//include 'senriot-cloud-quickup'
+//findProject(':senriot-cloud-quickup')?.name = 'quickup'
+
+//include 'quickup-webapp'
+//findProject(':quickup-webapp')?.name = 'kx-webapp'
+
+//include 'quickup-wxapp'
+//findProject(':quickup-wxapp')?.name = 'kx-wxapp'
+
+include 'headset-webapp'
+findProject(':headset-webapp')?.name = 'headset-client'
+
+include 'headset-service'
+findProject(':headset-service')?.name = 'headset-service'
+
+
+//include 'senriot-headset'
+//findProject(':senriot-headset')?.name = 'headset'

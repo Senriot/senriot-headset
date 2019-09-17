@@ -1,0 +1,108 @@
+<div class="modal-header">
+    <div class="modal-title">{{record.id ? '编辑【' + record.name + '】信息' : '添加商家'}}</div>
+</div>
+<nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
+<!--<sf *ngIf="i" #sf mode="edit" [schema]="schema" [ui]="ui" [formData]="i" button="none">-->
+<!--    <div class="modal-footer">-->
+<!--        <button nz-button type="button" (click)="close()">关闭</button>-->
+<!--        <button nz-button type="submit" nzType="primary" (click)="save(sf.value)" [disabled]="!sf.valid"-->
+<!--                [nzLoading]="service.http.loading">保存-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</sf>-->
+
+<form nz-form
+      *ngIf="i"
+      #f="ngForm"
+      gutter="24"
+      se-container="2"
+      [labelWidth]="140">
+    <!--    <nz-divider nzText="基本信息"-->
+    <!--                style="font-size: 14px;color: #6e6e6e"-->
+    <!--                [nzDashed]="true"-->
+    <!--                nzOrientation="left"></nz-divider>-->
+    <se label="商家名称" required error="商家名称不能为空">
+        <input nz-input
+               required
+               name="name"
+               [(ngModel)]="i.name"
+               placeholder="商家名称">
+    </se>
+
+<!--    <se label="所属代理">-->
+<!--        <input nz-input-->
+<!--               name="agencyId"-->
+<!--               [(ngModel)]="i.agencyId"-->
+<!--               placeholder="输入所属代理">-->
+<!--    </se>-->
+<!--    <se label="选择代理">-->
+<!--        <nz-select [(ngModel)]="record.agencyId"-->
+<!--                   nzPlaceHolder="选择商家"-->
+<!--                   name="agencyId"-->
+<!--                   nzShowSearch-->
+<!--                   nzAllowClear>-->
+<!--            <nz-option *ngFor="let o of agencies$ | async" [nzValue]="o.id" [nzLabel]="o.name"></nz-option>-->
+<!--        </nz-select>-->
+<!--    </se>-->
+
+    <se label="联系人" required error="联系人不能为空">
+        <input nz-input
+               required
+               name="contact"
+               [(ngModel)]="i.contact"
+               placeholder="输入联系人姓名">
+    </se>
+
+    <se label="联系人电话">
+        <input nz-input
+               name="phone"
+               [(ngModel)]="i.phone"
+               placeholder="输入联系人姓名">
+    </se>
+    <nz-divider nzText="位置信息"
+                style="font-size: 14px;color: #6e6e6e"
+                [nzDashed]="true"
+                nzOrientation="left"></nz-divider>
+    <!--    <se label="省份">-->
+    <!--        &lt;!&ndash;        <nz-cascader [(ngModel)]="value" name="address" [nzLoadData]="loadData" (ngModelChange)="onChanges($event)"></nz-cascader>&ndash;&gt;-->
+    <!--        <nz-select [(ngModel)]="i.address.province.id" name="provinceId" (ngModelChange)="provinceChange($event)"-->
+    <!--                   [nzPlaceHolder]="'选择门店省份'">-->
+    <!--            <nz-option *ngFor="let p of provinceData | async" [nzValue]="p.id" [nzLabel]="p.name"></nz-option>-->
+    <!--        </nz-select>-->
+    <!--    </se>-->
+
+    <!--    <se label="市区">-->
+    <!--        <nz-select [(ngModel)]="i.address.city.id" name="cityId" [nzPlaceHolder]="'选择门店所在市'">-->
+    <!--            <nz-option *ngFor="let c of cityData | async" [nzValue]="c.id" [nzLabel]="c.name"></nz-option>-->
+    <!--        </nz-select>-->
+    <!--    </se>-->
+
+    <se label="详细地址" col="1">
+        <nz-input-group [nzAddOnAfter]="addOnBeforeTemplate">
+            <input type="text" nz-input [(ngModel)]="i.address.address" name="address" placeholder="从地图选择商家所在地址"
+                   readonly>
+            <ng-template #addOnBeforeTemplate>
+                <a (click)="showMap()"> <i nz-icon nzType="environment" nzTheme="outline"></i></a>
+            </ng-template>
+        </nz-input-group>
+    </se>
+
+    <!--    <se label="商家地址" col="1">-->
+    <!--&lt;!&ndash;        <button style="width: 100%;text-align: left" nz-button (click)="showMap()">{{record.address}}</button>&ndash;&gt;-->
+    <!--    </se>-->
+
+    <se col="1">
+        <div class="modal-footer">
+            <button nz-button
+                    type="button"
+                    (click)="close()">关闭
+            </button>
+            <button nz-button
+                    type="submit"
+                    [nzType]="'primary'"
+                    (click)="save(f.value)"
+                    [disabled]="!f.valid">保存
+            </button>
+        </div>
+    </se>
+</form>

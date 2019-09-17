@@ -1,0 +1,24 @@
+<nz-card [nzBordered]="false">
+
+
+    <st #logSt
+        [bordered]="true"
+        [columns]="columns"
+        [data]="url">
+        <!--        <ng-template #expand let-column="column" let-index="index" let-item>-->
+        <!--            {{item.payload.toJSON}}-->
+        <!--            &lt;!&ndash;                            <sv-container labelWidth="150" *ngIf="item.msgType ==='Status'">&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                <sv label="时间">{{item.payload.time | date}}</sv>&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                <sv label="设备IP">{{item.payload.clientIp}}</sv>&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                <sv label="状态">&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                    <ng-container *ngIf="item.payload.status === 'online'; else offline">&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                        <nz-tag [nzColor]="'#87d068'">在线</nz-tag>&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                    </ng-container>&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                    <ng-template #offline>&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                        <nz-tag [nzColor]="'#f50'">离线</nz-tag>&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                    </ng-template>&ndash;&gt;-->
+        <!--            &lt;!&ndash;                                </sv>&ndash;&gt;-->
+        <!--            &lt;!&ndash;                            </sv-container>&ndash;&gt;-->
+        <!--        </ng-template>-->
+    </st>
+</nz-card>

@@ -1,0 +1,98 @@
+<page-header>
+</page-header>
+<nz-card>
+    <st #st bordered [data]="loggers" [columns]="columns"
+        virtualScroll
+        [virtualMaxBufferPx]="1000"
+        [virtualMinBufferPx]="640"
+        [scroll]="{ x: '500px', y: '640px' }"
+        [page]="page"
+        [res]="{reName:{list:'loggers'}}">
+
+        <ng-template #buttons
+                     st-row="buttons"
+                     let-item
+                     let-index="index"
+                     let-column="buttons">
+            <button (click)="changeLevel(item.name, 'TRACE')"
+                    nz-button
+                    nzSize="small"
+                    [nzType]="(item.level=='TRACE') ?'primary':'default'">TRACE
+            </button>
+            <button (click)="changeLevel(item.name, 'DEBUG')"
+                    nz-button
+                    nzSize="small"
+                    [nzType]="(item.level=='DEBUG') ?'primary':'default'">DEBUG
+            </button>
+            <button (click)="changeLevel(item.name, 'INFO')"
+                    nz-button
+                    nzSize="small"
+                    [nzType]="(item.level=='INFO') ?'primary':'default'">INFO
+            </button>
+            <button (click)="changeLevel(item.name, 'WARN')"
+                    nz-button
+                    nzSize="small"
+                    [nzType]="(item.level=='WARN') ?'primary':'default'">WARN
+            </button>
+            <button (click)="changeLevel(item.name, 'ERROR')"
+                    nz-button
+                    nzSize="small"
+                    [nzType]="(item.level=='ERROR') ?'danger':'default'">ERROR
+            </button>
+            <button (click)="changeLevel(item.name, 'OFF')"
+                    nz-button
+                    nzSize="small"
+                    [nzType]="(item.level=='OFF') ?'dashed':'default'">OFF
+            </button>
+        </ng-template>
+    </st>
+</nz-card>
+<!--<nz-card>-->
+<!--    <nz-table nzBordered>-->
+<!--        <thead>-->
+<!--        <tr title="click to order">-->
+<!--            <th (click)="orderProp = 'name'; reverse=!reverse"><span>Name</span></th>-->
+<!--            <th (click)="orderProp = 'level'; reverse=!reverse"><span>Level</span></th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr *ngFor="let logger of loggers">-->
+<!--            <td>-->
+<!--                <small>{{logger.name | slice:0:140}}</small>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <button (click)="changeLevel(logger.name, 'TRACE')"-->
+<!--                        nz-button-->
+<!--                        nzSize="small"-->
+<!--                        [nzType]="(logger.level=='TRACE') ?'primary':'default'">TRACE-->
+<!--                </button>-->
+<!--                <button (click)="changeLevel(logger.name, 'DEBUG')"-->
+<!--                        nz-button-->
+<!--                        nzSize="small"-->
+<!--                        [nzType]="(logger.level=='DEBUG') ?'primary':'default'">DEBUG-->
+<!--                </button>-->
+<!--                <button (click)="changeLevel(logger.name, 'INFO')"-->
+<!--                        nz-button-->
+<!--                        nzSize="small"-->
+<!--                        [nzType]="(logger.level=='INFO') ?'primary':'default'">INFO-->
+<!--                </button>-->
+<!--                <button (click)="changeLevel(logger.name, 'WARN')"-->
+<!--                        nz-button-->
+<!--                        nzSize="small"-->
+<!--                        [nzType]="(logger.level=='WARN') ?'primary':'default'">WARN-->
+<!--                </button>-->
+<!--                <button (click)="changeLevel(logger.name, 'ERROR')"-->
+<!--                        nz-button-->
+<!--                        nzSize="small"-->
+<!--                        [nzType]="(logger.level=='ERROR') ?'danger':'default'">ERROR-->
+<!--                </button>-->
+<!--                <button (click)="changeLevel(logger.name, 'OFF')"-->
+<!--                        nz-button-->
+<!--                        nzSize="small"-->
+<!--                        [nzType]="(logger.level=='OFF') ?'dashed':'default'">OFF-->
+<!--                </button>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </nz-table>-->
+<!--</nz-card>-->

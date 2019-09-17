@@ -1,0 +1,62 @@
+<div class="modal-header">
+    <div class="modal-title">选择位置</div>
+</div>
+<!--<nz-alert [nzType]="'info'"-->
+<!--          [nzMessage]="message">-->
+<!--  <ng-template #message>选中地址:-->
+<!--    <strong class="text-primary">{{ address }}</strong>-->
+<!--  </ng-template>-->
+<!--</nz-alert>-->
+<div style="position:relative; margin-top: 8px">
+    <ngx-amap
+            style="height: 400px;"
+            [resizeEnable]="true"
+            [center]="point"
+            (mapClick)="onMapEvent($event, 'mapClick')"
+            [zoom]="13"
+    >
+        <amap-marker [position]="point">
+            <amap-info-window [isOpen]="true">
+                {{address}}
+            </amap-info-window>
+        </amap-marker>
+    </ngx-amap>
+
+    <nz-input-group
+            style="width: 200px; position:absolute;top:10px;left:10px;"
+            nzSearch
+            [nzAddOnAfter]="suffixIconButton"
+    >
+        <input
+                type="text"
+                amapAutocomplete
+                datatype="all  "
+                (select)="onSearch($event)"
+                nz-input
+                [(ngModel)]="searchText"
+                placeholder="请输入地址关键字..."
+        />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+        <button nz-button
+                nzType="primary"
+                nzSearch>
+            <i nz-icon
+               type="search"></i>
+        </button>
+    </ng-template>
+
+
+</div>
+<div class="modal-footer">
+    <button nz-button
+            type="submit"
+            [nzType]="'primary'"
+            (click)="ok()">
+        确定
+    </button>
+    <button nz-button
+            type="button"
+            (click)="close()">关闭
+    </button>
+</div>

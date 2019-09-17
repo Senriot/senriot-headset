@@ -1,0 +1,77 @@
+<table class="table table-bordered">
+    <tr>
+        <th>账号</th>
+        <td style="width: 400px">{{record.login}}</td>
+    </tr>
+    <tr>
+        <th>昵称</th>
+        <td>{{record.nickName}}</td>
+    </tr>
+    <tr>
+        <th>姓名</th>
+        <td>{{record.userName}}</td>
+    </tr>
+    <tr>
+        <th>性别</th>
+        <td>{{sex[record.sex].text}}</td>
+    </tr>
+    <tr>
+        <th>头像</th>
+        <td>
+            <nz-avatar [nzShape]="'square'"
+                       [nzIcon]="'user'"
+                       nzSize="large"
+                       [nzSrc]="record.imageUrl"></nz-avatar>
+        </td>
+    </tr>
+    <!--  <tr>-->
+    <!--    <th>所属部门</th>-->
+    <!--    <td>-->
+    <!--      <ng-container *ngIf="depts$ | async as depts">-->
+    <!--        <nz-tag *ngFor="let tag of record.depts">{{findDept(depts, tag)}}</nz-tag>-->
+    <!--      </ng-container>-->
+    <!--    </td>-->
+    <!--  </tr>-->
+    <tr>
+        <th>用户角色</th>
+        <td>
+            <ng-container *ngIf="roles$ | async as roles">
+                <nz-tag *ngFor="let role of record.authorities">{{findRole(roles, role)}}</nz-tag>
+            </ng-container>
+        </td>
+    </tr>
+    <tr>
+        <th>生日</th>
+        <td>{{record.birthday}}</td>
+    </tr>
+    <tr>
+        <th>手机号</th>
+        <td>{{record.phone}}</td>
+    </tr>
+    <tr>
+        <th>邮箱</th>
+        <td><a> {{record.email}}</a></td>
+    </tr>
+
+    <tr>
+        <th>激活</th>
+        <td>{{record.activated ? '已激活' : '未激活'}}
+        </td>
+    </tr>
+
+    <tr>
+        <th>状态</th>
+        <td>
+            <nz-tag [nzColor]="userStatus[record.status].color">{{userStatus[record.status].text}}</nz-tag>
+        </td>
+    </tr>
+
+    <tr>
+        <th>创建时间</th>
+        <td>{{record.createdDate | date}}</td>
+    </tr>
+    <tr>
+        <th>更新时间</th>
+        <td>{{record.lastModifiedDate | date}}</td>
+    </tr>
+</table>

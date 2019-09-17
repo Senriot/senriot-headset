@@ -1,0 +1,88 @@
+<page-header [content]="content"
+             [title]="'设备管理'">
+    <ng-template #content>
+        <nz-row *ngIf="deviceStatistics" [nzGutter]="16"
+                nzAlign="middle"
+                nzJustify="start"
+                nzType="flex">
+            <nz-col [nzSpan]="4"
+                    class="row">
+                <nz-statistic [nzTitle]="'设备总数'"
+                              [nzValue]="deviceStatistics.deviceCount "></nz-statistic>
+            </nz-col>
+            <nz-col [nzSpan]="4"
+                    class="row">
+                <div style="width:1px;height:auto;border-right:1px solid #ccc;float:right;margin-right:30px;"></div>
+                <nz-statistic [nzTitle]="title"
+                              [nzValue]="deviceStatistics.activeCount">
+                    <ng-template #title>
+                        <nz-badge nzStatus="success"
+                                  nzText="激活设备"></nz-badge>
+                    </ng-template>
+                </nz-statistic>
+
+            </nz-col>
+
+            <nz-col [nzSpan]="4"
+                    class="row">
+                <div style="width:1px;height:auto;border-right:1px solid #ccc;float:right;margin-right:30px;"></div>
+                <nz-statistic [nzTitle]="onlineTitle"
+                              [nzValue]="deviceStatistics.onlineCount">
+                    <ng-template #onlineTitle>
+                        <nz-badge nzStatus="success"
+                                  nzText="当前在线"></nz-badge>
+                    </ng-template>
+                </nz-statistic>
+            </nz-col>
+        </nz-row>
+    </ng-template>
+
+</page-header>
+<nz-card [nzExtra]="search"
+         [nzTitle]="action">
+    <ng-template #action>
+        <nz-button-group>
+            <button (click)="add()"
+                    nz-button
+                    nzType="primary"><i nz-icon
+                                        type="plus"></i> 注册设备
+            </button>
+            <button [http-url]="deviceService.resourceUrl + '/exportXls'" down-file nz-button>
+                <i nz-icon
+                   nzType="download"></i>导出
+            </button>
+        </nz-button-group>
+    </ng-template>
+    <ng-template #search>
+        <sf #sf (formReset)="st.reset($event)" (formSubmit)="st.reset($event)" [button]="{submit:'搜索'}" [schema]="searchSchema"
+            layout="inline"></sf>
+    </ng-template>
+
+
+    <ng-template #alert>
+        <nz-alert [nzMessage]="message"
+                  [nzShowIcon]="true"
+                  [nzType]="'info'">
+            <ng-template #message>已选择
+                <strong class="text-primary">{{ selectedRows.length }}项</strong>
+                <a (click)="st.clearCheck()"
+                   *ngIf="selectedRows.length > 0"
+                   class="ml-lg">清空</a>
+            </ng-template>
+            <ng-template #tp>
+                <nz-input-number [(ngModel)]="price" [nzMin]="0.01" [nzStep]="0.01"></nz-input-number>
+            </ng-template>
+        </nz-alert>
+    </ng-template>
+
+    <st #st
+        (change)="stOnChange($event)"
+        [bordered]="true"
+        [columns]="columns"
+        [data]="url"
+        [header]="alert"></st>
+</nz-card>
+
+
+
+

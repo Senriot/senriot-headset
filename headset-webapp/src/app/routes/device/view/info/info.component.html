@@ -1,0 +1,102 @@
+<ng-container *ngIf="device">
+    <nz-card nzTitle="基本信息">
+        <table class="table table-bordered">
+            <!--            <td rowspan="6" width="160">-->
+            <!--                <img height="160"-->
+            <!--                     src="data:image/png;base64,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"-->
+            <!--                     width="160">-->
+            <!--                <span style="width: 100%; text-align: center">二维码</span>-->
+            <!--            </td>-->
+
+            <tr>
+                <th>设备标识</th>
+                <td width="180">
+                    <div class="row">
+                        <ellipsis length="10">{{ device?.deviceId }}</ellipsis>
+                        &nbsp; <a (click)="copy(device.deviceId)">复制</a></div>
+                </td>
+                <th>设备名称</th>
+                <td>{{device?.deviceName}}&nbsp; <a (click)="copy(device?.deviceSecret)">复制</a></td>
+                <th>管理员</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>设备秘钥</th>
+                <td>
+                    <div class="row">
+                        <ellipsis length="10">{{ device?.deviceSecret }}</ellipsis>
+                        &nbsp; <a (click)="copy(device?.deviceSecret)">复制</a></div>
+                </td>
+                <th>当前状态</th>
+                <td>
+                    <nz-tag nzColor="#2db7f5">{{status[device.status].text}}</nz-tag>
+                </td>
+                <th>IP地址</th>
+                <td>{{device?.ipAddress}}</td>
+            </tr>
+            <tr>
+                <th>添加时间</th>
+                <td>{{device?.createdDate |date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <th>激活时间</th>
+                <td>{{device?.activeDate |date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <th>最后上线时间</th>
+                <td>{{device?.onlineDate |date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            </tr>
+            <tr>
+                <th>所在省/市</th>
+                <td>{{device?.province?.name}}</td>
+                <th>所在市/区</th>
+                <td>{{device?.city?.name}}</td>
+                <th>所在区/县</th>
+                <td>{{device?.district?.name}}</td>
+            </tr>
+            <tr>
+                <th>设备位置</th>
+                <td colspan="5">{{device?.address}}</td>
+            </tr>
+        </table>
+    </nz-card>
+    <nz-card nzTitle="有声图书馆列表授权" [nzExtra]="save">
+        <ng-template #save>
+            <button (click)="saveCategory()"
+                    nz-button
+                    [nzLoading]="http.loading"
+                    nzType="primary"> 保存
+            </button>
+        </ng-template>
+        <tag-select disabled="true">
+            <nz-tag *ngFor="let i of categories; let idx = index" nzMode="checkable"
+                    [(nzChecked)]="i.value" (nzCheckedChange)="change(i)">{{i.text}}</nz-tag>
+        </tag-select>
+    </nz-card>
+    <nz-card nzTitle="商家信息">
+        <table *ngIf="store$ | async as store" class="table table-bordered">
+            <tr>
+                <th>商家名称</th>
+                <td>
+                    <div><span>{{store.name}}</span><a (click)="editStore(tp)"> 修改商家 </a>
+                        <ng-template #tp>
+                            <nz-select
+                                    [(ngModel)]="device.storeId"
+                                    nzAllowClear
+                                    nzPlaceHolder="选择商家"
+                                    nzShowSearch
+                                    style="width: 100%;">
+                                <nz-option *ngFor="let o of stores" [nzLabel]="o.name" [nzValue]="o.id"></nz-option>
+                            </nz-select>
+                        </ng-template>
+                    </div>
+                </td>
+                <th>联系人</th>
+                <td>
+                    <div><span>{{store.contact}}</span></div>
+                </td>
+                <th>商家地址</th>
+                <td>
+                    <div><span>{{store.address?.address}}</span></div>
+                </td>
+
+            </tr>
+        </table>
+    </nz-card>
+</ng-container>

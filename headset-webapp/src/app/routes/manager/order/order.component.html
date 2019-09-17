@@ -1,0 +1,33 @@
+<page-header [content]="content">
+    <ng-template #content>
+        <nz-row [nzGutter]="24">
+            <nz-col [nzSpan]="4">
+                <nz-statistic [nzTitle]="'销售数量'" [nzValue]="4826 | number"></nz-statistic>
+            </nz-col>
+            <nz-col [nzSpan]="4">
+                <nz-statistic [nzTitle]="'总销售额 (CNY)'" [nzValue]="303331.18 | number: '1.0-2'"></nz-statistic>
+            </nz-col>
+            <nz-col [nzSpan]="4">
+                <nz-statistic [nzTitle]="'总利润 (CNY)'" [nzValue]="110176.38 | number: '1.0-2'"></nz-statistic>
+            </nz-col>
+        </nz-row>
+    </ng-template>
+</page-header>
+<nz-card [nzExtra]="search" [nzTitle]="phActionTpl">
+    <ng-template #phActionTpl>
+        <nz-button-group>
+            <button (click)="export()"
+                    nz-button>
+                <i nz-icon
+                   nzType="download"></i>导出
+            </button>
+        </nz-button-group>
+    </ng-template>
+    <ng-template #search>
+        <sf (formReset)="st.reset($event,{merge:true})" (formSubmit)="st.reset($event,{merge:true})"
+            [schema]="searchSchema"
+            mode="search"></sf>
+    </ng-template>
+
+    <st #st [columns]="columns" [data]="url" [req]="{params:{isCashOut:false,sort:'createdDate,desc'}}" bordered></st>
+</nz-card>

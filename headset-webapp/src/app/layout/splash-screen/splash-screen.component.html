@@ -1,0 +1,11 @@
+<!-- splash screen -->
+<div #splashScreen
+     class="kt-splash-screen">
+    <img alt="logo"
+         src="../../../assets/logo.svg"/>
+    <ng-template #indicatorTemplate><i nz-icon
+                                       nzType="loading"
+                                       style="font-size: 50px;"></i></ng-template>
+    <nz-spin [nzIndicator]="indicatorTemplate"
+             nzSimple></nz-spin>
+</div>

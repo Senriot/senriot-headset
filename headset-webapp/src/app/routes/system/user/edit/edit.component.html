@@ -1,0 +1,133 @@
+<div class="modal-header">
+    <div class="modal-title"> 编辑 {{record.nickName  }}</div>
+</div>
+
+<form #f="ngForm"
+      labelWidth="100"
+      nz-form
+      se-container="2">
+
+    <nz-divider [nzDashed]="true"
+                nzOrientation="left"
+                nzText="基本信息"></nz-divider>
+    <se error="请输入用户账号"
+        label="账号"
+        required>
+        <input [(ngModel)]="record.login"
+               [disabled]="!!record.id"
+               [required]="true"
+               name="account"
+               nz-input
+               type="text">
+    </se>
+    <se error="输入用户名称"
+        label="昵称"
+        required>
+        <input [(ngModel)]="record.nickName"
+               [required]="true"
+               name="nickName"
+               nz-input
+               type="text">
+    </se>
+    <se error="输入邮箱地址"
+        label="邮箱"
+        required>
+        <input [(ngModel)]="record.email"
+               [required]="true"
+               name="email"
+               nz-input
+               type="email">
+    </se>
+
+    <se error="请选择角色"
+        label="角色"
+        required>
+        <nz-select [(ngModel)]="record.authorities"
+                   [required]="true"
+                   name="authorities"
+                   nzMode="multiple"
+                   nzPlaceHolder="选择角色">
+            <nz-option *ngFor="let r of roles$ | async"
+                       [nzLabel]="r.roleName"
+                       [nzValue]="r.id"></nz-option>
+        </nz-select>
+    </se>
+    <se error="输入用户姓名"
+        label="姓名">
+        <input [(ngModel)]="record.userName"
+               name="userName"
+               nz-input
+               type="text">
+    </se>
+
+
+    <!--    <se label="部门">-->
+    <!--        <nz-tree-select *ngIf="dept$ | async as depts"-->
+    <!--                        nzPlaceHolder="请选择部门"-->
+    <!--                        [nzMultiple]="true"-->
+    <!--                        [(ngModel)]="record.depts"-->
+    <!--                        [nzNodes]="depts"-->
+    <!--                        name="depts"></nz-tree-select>-->
+    <!--    </se>-->
+
+    <nz-divider [nzDashed]="true"
+                nzOrientation="left"
+                nzText="其他信息"></nz-divider>
+
+    <se label="性别">
+        <nz-select [(ngModel)]="record.sex"
+                   name="sex">
+            <nz-option [nzValue]="1"
+                       nzLabel="男"></nz-option>
+            <nz-option [nzValue]="2"
+                       nzLabel="女"></nz-option>
+            <nz-option [nzValue]="3"
+                       nzLabel="未知"></nz-option>
+        </nz-select>
+    </se>
+
+    <se label="手机号">
+        <input [(ngModel)]="record.phone"
+               name="phone"
+               nz-input
+               placeholder="输入手机号">
+    </se>
+
+    <se label="生日">
+        <nz-date-picker
+                [(ngModel)]="record.birthday"
+                [nzPlaceHolder]="'选择生日'"
+                name="birthday"></nz-date-picker>
+    </se>
+
+    <se label="状态">
+        <nz-select [(ngModel)]="record.status"
+                   [nzAllowClear]="true"
+                   name="status">
+            <nz-option
+                    [nzValue]="0"
+                    nzLabel="正常">
+            </nz-option>
+            <nz-option
+                    [nzValue]="1"
+                    nzLabel="禁用">
+            </nz-option>
+        </nz-select>
+    </se>
+
+    <se col="1">
+        <div class="modal-footer">
+            <button (click)="close()"
+                    nz-button
+                    type="button">关闭
+            </button>
+            <button (click)="save(f.value)"
+                    [disabled]="!f.valid"
+                    [nzLoading]="userSrv.http.loading"
+                    [nzType]="'primary'"
+                    nz-button
+                    type="submit">保存
+            </button>
+        </div>
+    </se>
+</form>

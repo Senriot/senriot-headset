@@ -1,0 +1,57 @@
+{
+  "generator-jhipster-kotlin": {
+    "promptValues": {
+      "packageName": "com.senriot.quickup"
+    },
+    "jhipsterVersion": "6.2.0",
+    "applicationType": "monolith",
+    "baseName": "quickup",
+    "packageName": "com.senriot.quickup",
+    "packageFolder": "com/senriot/quickup",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YWJmZTRjYmFlYWZmMzU2NDVlZTE4YjVlYWY1MjEwMmJmM2M5YzU3NjM0YTc1OGVjZmI1MTNiOTFkM2ZmMWJiMGM1MDAxODc2ZmVmNTVkOTVjZmJjZjQyZDliMDQ3ZTEzYmZiNWZmNTAyMGE0MmFkYjc3MjBlMWM5MTUzYWE1NmI="
+  },
+  "generator-jhipster": {
+    "promptValues": {
+      "nativeLanguage": "zh-cn"
+    },
+    "jhipsterVersion": "6.2.0",
+    "applicationType": "monolith",
+    "baseName": "quickup",
+    "testFrameworks": [],
+    "jhiPrefix": "kx",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-kotlin",
+        "version": "1.0.0"
+      }
+    ],
+    "enableTranslation": true,
+    "clientPackageManager": "yarn",
+    "nativeLanguage": "zh-cn",
+    "languages": [
+      "zh-cn"
+    ],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-kotlin",
+        "version": "1.0.0"
+      }
+    ],
+    "skipClient": true
+  }
+}

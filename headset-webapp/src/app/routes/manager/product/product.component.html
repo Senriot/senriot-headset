@@ -1,0 +1,23 @@
+<page-header>
+    <ng-template #phActionTpl>
+        <nz-button-group>
+            <button (click)="add()"
+                    nz-button
+                    nzType="primary"><i nz-icon
+                                        type="plus"></i> 添加类型
+            </button>
+            <button nz-button
+                    (click)="export()">
+                <i nz-icon
+                   nzType="download"></i>导出
+            </button>
+        </nz-button-group>
+    </ng-template>
+</page-header>
+<nz-card [nzTitle]="phActionTpl" [nzExtra]="search">
+    <ng-template #search>
+        <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
+    </ng-template>
+
+    <st #st [bordered]="true" [data]="url" [columns]="columns"></st>
+</nz-card>

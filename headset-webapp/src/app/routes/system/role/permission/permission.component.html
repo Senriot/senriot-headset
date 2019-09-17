@@ -1,0 +1,27 @@
+<div style="width: 550px">
+  <ng-container *ngIf="treeNodes">
+    <nz-tree #tree
+             [nzData]="treeNodes"
+             [nzMultiple]="false"
+             nzCheckable
+             (nzCheckBoxChange)="onChecked($event)"
+             [nzCheckedKeys]="record.menus"
+             [nzExpandAll]="true"
+             nzBlockNode>
+    </nz-tree>
+    <div class="drawer-footer">
+      <button nz-button
+              [nzType]="'default'"
+              (click)="cancel()">
+        取消
+      </button>
+      <button nz-button
+              [nzLoading]="isLoading$ | async"
+              [nzType]="'primary'"
+              (click)="save(treeNodes)">
+        保存
+      </button>
+    </div>
+  </ng-container>
+
+</div>

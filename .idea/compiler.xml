@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="senriot-headset.kx-service.main" target="1.8" />
+      <module name="senriot-headset.kx-service.test" target="1.8" />
+      <module name="senriot-headset.kx-webapp.main" target="1.8" />
+      <module name="senriot-headset.kx-webapp.test" target="1.8" />
+      <module name="senriot-headset.kx-wxapp.main" target="1.8" />
+      <module name="senriot-headset.kx-wxapp.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

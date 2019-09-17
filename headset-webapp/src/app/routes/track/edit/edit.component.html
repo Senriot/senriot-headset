@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <div class="modal-title">{{record.id ? '修改资源' : '新增资源'}}</div>
+</div>
+<nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
+
+<form #f="ngForm" *ngIf="i"
+      labelWidth="100"
+      nz-form
+      se-container="1">
+    <se error="请输入资源名称" label="名称" required>
+        <input [(ngModel)]="i.name" name="name" nz-input required>
+    </se>
+
+    <se label="文件" required>
+        <nz-upload (nzChange)="uploadChange($event)" [nzData]="data" [nzFileList]="fileList"
+                   [nzShowButton]="showUpload" nzAction="http://47.103.85.15:8899/upload">
+            <button nz-button><i nz-icon nzType="upload"></i><span>点击上传</span></button>
+        </nz-upload>
+    </se>
+
+    <se label="描述">
+      <textarea [(ngModel)]="record.remark"
+                name="description"
+                nz-input
+                placeholder="..."
+                rows="2"
+      ></textarea>
+    </se>
+
+    <se col="1">
+        <div class="modal-footer">
+            <button (click)="close()"
+                    nz-button
+                    type="button"> 关闭
+            </button>
+            <button (click)="save(f.value)"
+                    [disabled]="!f.valid"
+                    [nzLoading]="trackService.http.loading"
+                    [nzType]="'primary'"
+                    nz-button
+                    type="submit">保存
+            </button>
+        </div>
+    </se>
+</form>
+
+<!--<sf #sf *ngIf="i" [formData]="i" [schema]="schema" [ui]="ui" button="none" mode="edit">-->
+<!--    <div class="modal-footer">-->
+<!--        <button (click)="close()" nz-button type="button">关闭</button>-->
+<!--        <button (click)="save(sf.value)" [disabled]="!sf.valid" [nzLoading]="http.loading" nz-button nzType="primary"-->
+<!--                type="submit">保存-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</sf>-->

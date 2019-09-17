@@ -1,0 +1,92 @@
+<div class="modal-header">
+    <div class="modal-title">{{record.id ? '修改设备' : '注册设备'}}</div>
+</div>
+<form #f="ngForm"
+      [labelWidth]="140"
+      gutter="24"
+      nz-form
+      se-container="2">
+    <nz-divider [nzDashed]="true"
+                nzOrientation="left"
+                nzText="基本信息"
+                style="font-size: 14px;color: #6e6e6e"></nz-divider>
+    <se error="支持英文字母、数字和特殊字符-_@.:，长度限制4~32"
+        label="设备标识"
+        required>
+        <input [(ngModel)]="record.deviceId"
+               [disabled]="!!record.id"
+               maxlength="32"
+               minlength="4"
+               name="deviceId"
+               nz-input
+               placeholder="输入设备唯一编号"
+               required>
+    </se>
+    <se error="输入设备名称"
+        label="设备名称"
+        required>
+        <input [(ngModel)]="record.deviceName"
+               name="deviceName"
+               nz-input
+               placeholder="输入设备名称(别名)"
+               required>
+    </se>
+    <se error="选择管理员" label="管理员">
+        <nz-select [(ngModel)]="record.managers" nzMode="multiple" [nzAllowClear]="true" [nzPlaceHolder]="'请选择设备类别'" name="deviceType">
+            <nz-option
+                    *ngFor="let option of managers$ | async"
+                    [nzLabel]="option.nickName"
+                    [nzValue]="option.id">
+            </nz-option>
+        </nz-select>
+    </se>
+    <se error="请选择一个商家" label="选择商家">
+        <nz-select (nzOnSearch)="storeOnSearch($event)" (nzScrollToBottom)="loadMore($event)"
+                   [(ngModel)]="record.storeId"
+                   name="storeId"
+                   nzAllowClear
+                   nzPlaceHolder="选择商家"
+                   nzServerSearch
+                   nzShowSearch>
+            <nz-option *ngFor="let o of stores$ | async" [nzLabel]="o.name" [nzValue]="o.id"></nz-option>
+        </nz-select>
+    </se>
+
+    <!--    <se label="单价">-->
+    <!--        <nz-input-number [(ngModel)]="record.price" [nzMin]="0.01" [nzStep]="0.01" name="price"-->
+    <!--                         nzPlaceHolder="输入单价"></nz-input-number>-->
+    <!--    </se>-->
+
+    <!--    <se label="库存">-->
+    <!--        <nz-input-number [(ngModel)]="record.stock" [nzMax]="200" [nzMin]="0" [nzStep]="1" name="stock"-->
+    <!--                         nzPlaceHolder="输入库存"></nz-input-number>-->
+    <!--    </se>-->
+    <nz-divider [nzDashed]="true"
+                nzOrientation="left"
+                nzText="位置信息"
+                style="font-size: 14px;color: #6e6e6e"></nz-divider>
+    <se col="1" label="选择地址" optionalHelp="从地图搜索设备所在地址">
+        <nz-input-group [nzAddOnAfter]="addOnBeforeTemplate">
+            <input [(ngModel)]="record.address" name="address" nz-input placeholder="从地图选择位置" readonly
+                   type="text">
+            <ng-template #addOnBeforeTemplate>
+                <a (click)="showMap()"> <i nz-icon nzTheme="outline" nzType="environment"></i></a>
+            </ng-template>
+        </nz-input-group>
+    </se>
+
+    <se col="1">
+        <div class="modal-footer">
+            <button (click)="close()"
+                    nz-button
+                    type="button">关闭
+            </button>
+            <button (click)="save(f.value)"
+                    [disabled]="!f.valid"
+                    [nzType]="'primary'"
+                    nz-button
+                    type="submit">保存
+            </button>
+        </div>
+    </se>
+</form>

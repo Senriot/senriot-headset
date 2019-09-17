@@ -1,0 +1,124 @@
+<div class="modal-header">
+    <div class="modal-title">{{ record ? '编辑菜单' : '添加菜单'}}</div>
+</div>
+<nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
+<sf #sf *ngIf="i" mode="edit" [schema]="schema" [ui]="ui" [formData]="i" button="none">
+
+    <ng-template sf-template="icon" let-me let-ui="ui" let-schema="schema">
+        <button style="width: 100%;text-align: left" nz-button (click)="showIcon()"></button>
+    </ng-template>
+
+    <div class="modal-footer">
+        <button nz-button type="button" (click)="close()">关闭</button>
+        <button nz-button type="submit" nzType="primary" (click)="save(sf.value)" [disabled]="!sf.valid"
+                [nzLoading]="isSaving">保存
+        </button>
+    </div>
+</sf>
+<!--<form nz-form-->
+<!--      #f="ngForm"-->
+<!--      se-container="2"-->
+<!--      labelWidth="100">-->
+<!--  &lt;!&ndash;  <se label="类型"&ndash;&gt;-->
+<!--  &lt;!&ndash;      required&ndash;&gt;-->
+<!--  &lt;!&ndash;      col="1"&ndash;&gt;-->
+<!--  &lt;!&ndash;      error="请选择菜单类型">&ndash;&gt;-->
+<!--  &lt;!&ndash;    <nz-radio-group [(ngModel)]="record.menuType"&ndash;&gt;-->
+<!--  &lt;!&ndash;                    name="menuType">&ndash;&gt;-->
+<!--  &lt;!&ndash;      <label nz-radio&ndash;&gt;-->
+<!--  &lt;!&ndash;             [nzValue]="'MENU'">菜单</label> <label nz-radio&ndash;&gt;-->
+<!--  &lt;!&ndash;                                                  [nzValue]="'BUTTON'">按钮/权限</label>&ndash;&gt;-->
+<!--  &lt;!&ndash;    </nz-radio-group>&ndash;&gt;-->
+<!--  &lt;!&ndash;  </se>&ndash;&gt;-->
+
+<!--  <se label="名称"-->
+<!--      required-->
+<!--      error="请输入菜单名称">-->
+<!--    <input nz-input-->
+<!--           [(ngModel)]="record.text"-->
+<!--           [required]="true"-->
+<!--           name="text">-->
+<!--  </se>-->
+
+<!--  <se label="权限" *ngIf="record.menuType ==='MENU'"-->
+<!--      required-->
+<!--      error="请选择权限角色">-->
+<!--    <nz-select nzPlaceHolder="选择权限角色"-->
+<!--               [(ngModel)]="record.roles"-->
+<!--               [required]="true"-->
+<!--               name="roles"-->
+<!--               nzMode="multiple">-->
+<!--      <nz-option *ngFor="let r of roles$ | async"-->
+<!--                 [nzLabel]="r.label"-->
+<!--                 [nzValue]="r.value"></nz-option>-->
+<!--    </nz-select>-->
+<!--  </se>-->
+
+<!--  <se *ngIf="record.children.length<=0"-->
+<!--      label="路由">-->
+<!--    <input nz-input-->
+<!--           [(ngModel)]="record.link"-->
+<!--           name="link">-->
+<!--  </se>-->
+
+<!--  <se label="图标"-->
+<!--      *ngIf="record.menuType ==='MENU'">-->
+<!--    <input nz-input-->
+<!--           [(ngModel)]="record.icon"-->
+<!--           name="icon">-->
+<!--  </se>-->
+
+<!--  <se label="排序">-->
+<!--    <nz-input-number [(ngModel)]="record.sortOrder"-->
+<!--                     name="sortOrder"></nz-input-number>-->
+<!--  </se>-->
+
+<!--  <se label="隐藏"-->
+<!--      *ngIf="record.menuType ==='MENU'">-->
+<!--    <label nz-checkbox-->
+<!--           [(ngModel)]="record.hide"-->
+<!--           name="hide"></label>-->
+<!--  </se>-->
+<!--  <se label="隐藏面包屑"-->
+<!--      *ngIf="record.children.length>0">-->
+<!--    <label nz-checkbox-->
+<!--           [(ngModel)]="record.hideInBreadcrumb"-->
+<!--           name="hideInBreadcrumb"></label>-->
+<!--  </se>-->
+<!--  <se label="禁用">-->
+<!--    <label nz-checkbox-->
+<!--           [(ngModel)]="record.disabled"-->
+<!--           name="disabled"></label>-->
+<!--  </se>-->
+<!--  &lt;!&ndash;    <se label="外部链接"&ndash;&gt;-->
+<!--  &lt;!&ndash;        *ngIf="record.menuType ===1">&ndash;&gt;-->
+<!--  &lt;!&ndash;        <input nz-input&ndash;&gt;-->
+<!--  &lt;!&ndash;               [(ngModel)]="record.externalLink"&ndash;&gt;-->
+<!--  &lt;!&ndash;               name="externalLink">&ndash;&gt;-->
+<!--  &lt;!&ndash;    </se>&ndash;&gt;-->
+
+
+<!--  <se col="1"-->
+<!--      label="备注">-->
+<!--          <textarea [(ngModel)]="record.remark"-->
+<!--                    name="remark"-->
+<!--                    nz-input-->
+<!--                    rows="2"-->
+<!--                    placeholder="..."></textarea>-->
+<!--  </se>-->
+<!--  <se col="1">-->
+<!--    <div class="modal-footer">-->
+<!--      <button nz-button-->
+<!--              type="button"-->
+<!--              (click)="reset()">重置-->
+<!--      </button>-->
+<!--      <button nz-button-->
+<!--              type="submit"-->
+<!--              [nzType]="'primary'"-->
+<!--              (click)="save(f.value)"-->
+<!--              [disabled]="!f.valid"-->
+<!--              [nzLoading]="isSaving | async">保存-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </se>-->
+<!--</form>-->

@@ -1,0 +1,71 @@
+@import '~@delon/theme/styles/default';
+:host {
+  ::ng-deep {
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      background: #0a0a0a;
+      color: whitesmoke;
+    }
+    .langs {
+      width: 100%;
+      height: 40px;
+      line-height: 44px;
+      text-align: right;
+      .anticon {
+        margin-top: 24px;
+        margin-right: 24px;
+        font-size: 14px;
+        vertical-align: top;
+        cursor: pointer;
+      }
+    }
+    .wrap {
+      flex: 1;
+      padding: 64px 0;
+    }
+    .ant-form-item {
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: @screen-md-min) {
+      .container {
+        background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565183073&di=e661848ae2f1ae870e0426f9b876f7a8&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-04-27%2F5ae2ed3ecfca5.jpg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
+      .wrap {
+        padding: 32px 0 24px;
+      }
+    }
+    .top {
+      text-align: center;
+    }
+    .header {
+      height: 44px;
+      line-height: 44px;
+      a {
+        text-decoration: none;
+      }
+    }
+    .logo {
+      height: 44px;
+      margin-right: 16px;
+    }
+    .title {
+      position: relative;
+      font-weight: 500;
+      font-size: 26px;
+      color: #00AE83;
+      font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      vertical-align: middle;
+    }
+    .desc {
+      margin-top: 12px;
+      margin-bottom: 40px;
+      color: white;
+      font-size: @font-size-base;
+    }
+  }
+}

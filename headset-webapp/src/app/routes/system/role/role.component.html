@@ -1,0 +1,55 @@
+<page-header>
+    <ng-template #phActionTpl>
+        <nz-button-group>
+            <button (click)="add()"
+                    nz-button
+                    nzType="primary"><i nz-icon
+                                        type="plus"></i> 新增
+            </button>
+            <button (click)="st.export(null,{sheetname:'角色',filename:'角色.xlsx'})"
+                    nz-button>
+                <i nz-icon
+                   nzType="download"></i> 导出
+            </button>
+        </nz-button-group>
+        <nz-dropdown *ngIf="selected?.length > 0"
+                     class="mx-sm">
+            <button nz-button
+                    nz-dropdown>批量操作<i nz-icon
+                                       nzType="ellipsis"></i></button>
+            <ul nz-menu>
+                <li (click)="deleteMany()"
+                    nz-menu-item><i nz-icon
+                                    nzType="delete"></i>删除
+                </li>
+            </ul>
+        </nz-dropdown>
+    </ng-template>
+</page-header>
+<nz-card [nzTitle]="phActionTpl">
+    <sf #sf
+        (formReset)="st.reset($event)"
+        (formSubmit)="st.reset($event,{merge:true})"
+        [loading]="service.http.loading"
+        [schema]="searchSchema"
+        mode="search"></sf>
+    <div class="my-md">
+        <nz-alert [nzMessage]="message"
+                  [nzShowIcon]="true"
+                  [nzType]="'info'">
+            <ng-template #message>已选择 <strong class="text-primary">{{ selected?.length }}项</strong>
+                <a (click)="st.clearCheck()"
+                   *ngIf="selected?.length > 0"
+                   class="ml-lg">清空</a>
+            </ng-template>
+        </nz-alert>
+    </div>
+    <st #st
+        (change)="change($event)"
+        [bordered]="true"
+        [columns]="columns"
+        [data]="url"
+        [loading]="service.http.loading"
+        [page]="page"
+        [req]="{params:{sort:'createdDate,desc'}}"></st>
+</nz-card>
